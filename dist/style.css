@@ -39,3 +39,17 @@ nav a.active { background: #2c4655; color: #fff; }
 .itinerary-note > span { color: var(--accent); }
 .banner:before { background: linear-gradient(90deg,rgba(8,20,30,.8),rgba(8,20,30,.22)),linear-gradient(0deg,rgba(8,20,30,.55),transparent 65%); }
 ::selection { background: #486b80; color: #fff; }
+
+/* Travel participants */
+.participants { margin-bottom: 23px; }
+.participant-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
+.participant-groups > section + section { border-left: 1px solid var(--border); padding-left: 24px; }
+.participant-status { font-size: .875rem; font-weight: 600; margin: 0 0 13px; }
+.participant-status.confirmed { color: #a0e0cb; }
+.participant-status.unconfirmed { color: #ffc299; }
+.participant-list { list-style: none; display: flex; flex-wrap: wrap; gap: 9px; padding: 0; margin: 0; }
+.participant-list li { padding: 9px 15px; border: 1px solid var(--border); border-radius: 7px; background: var(--raised); color: var(--text); font-size: 1rem; }
+@media (max-width: 720px) {
+  .participant-groups { grid-template-columns: 1fr; gap: 20px; }
+  .participant-groups > section + section { border-left: 0; border-top: 1px solid var(--border); padding: 20px 0 0; }
+}
