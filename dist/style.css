@@ -91,3 +91,8 @@ nav a.active { background: #2c4655; color: #fff; }
 .participants .participant-list { margin-top:18px; }
 .trip-link + .trip-link { margin-top:10px; }
 @media(max-width:720px) { .trip-cards { grid-template-columns:1fr; } .trip-card { min-height:0; } }
+
+/* Generated winter landscape for Japan. */
+.japan-banner { background-image:url('japan-winter.png'); background-position:center 54%; }
+.japan-credit { margin-bottom:23px; }
+.japan-card { background:linear-gradient(rgba(13,23,32,.78),rgba(13,23,32,.92)),url('japan-winter.png') center/cover; }
