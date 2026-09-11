@@ -72,3 +72,22 @@ nav a.active { background: #2c4655; color: #fff; }
   .pws-details > div { flex-wrap: wrap; gap: 4px 16px; }
   .pws-details dd { text-align: left; }
 }
+
+/* Trip overview and Japan */
+.trip-cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+.trip-card { display:block; position:relative; padding:30px; min-height:310px; }
+.trip-card:hover { border-color:var(--accent); }
+.trip-card .badge { float:right; }
+.trip-card .eyebrow { display:block; padding-top:8px; }
+.trip-card h2 { margin-top:35px; font-size:1.8rem; }
+.trip-card p { line-height:1.7; }
+.trip-dates { font-size:1rem; color:var(--text); line-height:1.8; }
+.trip-open { display:inline-block; margin-top:15px; color:var(--accent); }
+.yunnan-card { background:linear-gradient(rgba(13,23,32,.88),rgba(13,23,32,.92)),url('yunnan.jpg') center/cover; }
+.japan-summary { margin-bottom:23px; border-top:3px solid #b6dce9; }
+.japan-summary h2 { font-size:2rem; }
+.japan-summary p { color:var(--muted); line-height:1.8; }
+.japan-summary .outline-badge { margin-left:10px; }
+.participants .participant-list { margin-top:18px; }
+.trip-link + .trip-link { margin-top:10px; }
+@media(max-width:720px) { .trip-cards { grid-template-columns:1fr; } .trip-card { min-height:0; } }
