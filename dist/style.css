@@ -96,3 +96,29 @@ nav a.active { background: #2c4655; color: #fff; }
 .japan-banner { background-image:url('japan-winter.png'); background-position:center 54%; }
 .japan-credit { margin-bottom:23px; }
 .japan-card { background:linear-gradient(rgba(13,23,32,.78),rgba(13,23,32,.92)),url('japan-winter.png') center/cover; }
+
+
+/* Saved travel plans */
+[hidden] { display:none !important; }
+.travel-account { margin:23px 0; }
+.travel-account p, .form-feedback { color:var(--muted); line-height:1.6; }
+.travel-login, .travel-actions { display:flex; flex-wrap:wrap; gap:12px; align-items:end; margin:16px 0; }
+.travel-login label, .activity-form label { display:grid; gap:8px; color:var(--muted); font-size:.875rem; }
+.travel-login input, .activity-form input, .activity-form textarea { width:100%; padding:12px; font:inherit; background:var(--page); color:var(--text); border:1px solid #587080; border-radius:7px; }
+.travel-login input { min-width:240px; }
+.travel-button { border:1px solid #587080; border-radius:7px; padding:11px 16px; background:var(--raised); color:var(--text); cursor:pointer; }
+.travel-button:hover { border-color:var(--accent); }
+.travel-button.primary { background:var(--accent); border-color:var(--accent); color:#302016; font-weight:600; }
+.travel-button:disabled { opacity:.55; cursor:wait; }
+input:focus-visible, textarea:focus-visible { outline:3px solid var(--accent); outline-offset:2px; }
+.activity-card { margin-top:16px; padding:18px; border:1px solid var(--border); border-radius:8px; overflow-wrap:anywhere; }
+.activity-card h3 { margin:8px 0; font-size:1rem; }
+.activity-card p { font-size:.875rem; line-height:1.6; }
+.activity-notes, .pws-notes p { white-space:pre-wrap; }
+.activity-location { color:var(--muted); }
+.activity-form { display:grid; gap:16px; margin-top:20px; }
+.activity-form h3, .activity-form .travel-actions { margin:0; }
+.activity-form textarea { min-height:110px; resize:vertical; }
+.save-error, .form-feedback { color:#ffc299 !important; }
+.pws-details dd { flex-shrink:1; overflow-wrap:anywhere; }
+@media(max-width:720px) { .travel-login { display:grid; } .travel-login input { min-width:0; } }
