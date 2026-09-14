@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 500">
+<defs>
+<linearGradient id="sky" x2="0" y2="1"><stop stop-color="#213449"/><stop offset=".65" stop-color="#836051"/><stop offset="1" stop-color="#cb9465"/></linearGradient>
+<linearGradient id="river" x2="0" y2="1"><stop stop-color="#35545e"/><stop offset="1" stop-color="#142b38"/></linearGradient>
+<linearGradient id="tower"><stop stop-color="#b78b76"/><stop offset=".5" stop-color="#efd6aa"/><stop offset="1" stop-color="#957c73"/></linearGradient>
+<pattern id="windows" width="16" height="18" patternUnits="userSpaceOnUse"><rect width="16" height="18" fill="#213946"/><rect x="5" y="4" width="3" height="5" fill="#cca175" opacity=".7"/></pattern>
+</defs>
+<path fill="url(#sky)" d="M0 0h1600v500H0z"/><circle cx="1150" cy="125" r="65" fill="#ffdcb0" opacity=".55"/>
+<path d="M0 332h80v-40h40v24h70v-57h66v62h58v-34h100v40h70v-68h40v51h75v-71h58v84h70v-35h58v42h73v-82h62v80h38v-26h80v30h55v-60h35v-23h34v89h40v-46h62v57h70v-35h62v34h88v-85h72v84h94v-50h63v65h57v160H0z" fill="#50616a" opacity=".75"/>
+<g fill="url(#windows)">
+<path d="M930 338V166h27v-16h34v16h24v172z"/><path d="M1050 338V105h13V80h12v25h16v233z"/>
+<path d="M1150 340V183l20-22 22 22v157z"/><path d="M1280 340V204h76v136z"/>
+<path d="M1400 340V144h16v-18h44v18h14v196z"/><path d="M1500 340V220h100v120z"/>
+</g>
+<g stroke="url(#tower)" fill="none" stroke-width="3">
+<path d="M760 332C823 251 823 223 786 90M845 332C782 251 782 223 819 90"/>
+<path d="M766 330L821 106M837 330L786 106M770 315L830 151M834 315L776 151M780 286L826 190M824 286L781 190M787 265L821 218M818 265L786 218"/>
+<path d="M786 90h33M784 110h37M781 136h44M783 163h40M788 190h30M792 218h20M792 243h20M786 275h32M776 305h52M760 332h85"/>
+<path stroke-width="4" d="M802 90V23"/><path d="M798 70h8"/>
+</g>
+<path fill="#1b3540" d="M0 338h1600v30H0z"/>
+<path fill="url(#river)" d="M0 362h1600v138H0z"/>
+<g stroke="#d5ac7e" opacity=".22" fill="none"><path d="M742 384h123m-101 12h72m-86 18h104m-78 21h47m-57 24h67M1042 382h58m-48 19h38m-41 23h46m299-36h100m-77 20h52m-65 19h79"/></g>
+<path d="M0 368q280 8 475-9t545 3 580-3" stroke="#e3bd8b" stroke-width="3" fill="none" opacity=".6"/>
+</svg>

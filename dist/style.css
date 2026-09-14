@@ -99,6 +99,21 @@ nav a.active { background: #2c4655; color: #fff; }
 
 
 /* Saved travel plans */
+/* Trip dates can span different years and have different lengths. */
+.day-strip { grid-template-columns:repeat(var(--trip-days,10),minmax(0,1fr)); }
+.guangzhou-banner { background-image:url('guangzhou-skyline.svg'); background-position:center; }
+.guangzhou-card { background:linear-gradient(rgba(13,23,32,.45),rgba(13,23,32,.88)),url('guangzhou-skyline.svg') center/cover; }
+.badge.booked { background:#183c36; border-color:#38766a; color:#a0e0cb; }
+.return-note { color:var(--muted); font-size:.875rem; line-height:1.7; margin:-10px 0 24px; }
+.booking-details { margin:15px 0 0; }
+.booking-details > div { display:flex; justify-content:space-between; gap:16px; border-top:1px solid var(--border); padding:10px 0; font-size:.875rem; }
+.booking-details dd { max-width:68%; overflow-wrap:anywhere; }
+.flight-route { color:var(--accent); }
+.flight-leg { border-bottom:1px solid var(--border); padding:16px 0; }
+.flight-leg h3 { margin:8px 0; font-size:1rem; }
+.flight-leg p { font-size:.875rem; line-height:1.7; margin:6px 0; }
+.arrival-note { color:#ffc299; }
+@media(max-width:720px) { .day-strip { grid-template-columns:repeat(var(--trip-mobile-days,5),minmax(0,1fr)); } .guangzhou-banner h2 { font-size:2.5rem; } }
 [hidden] { display:none !important; }
 .travel-account { margin:23px 0; }
 .travel-account p, .form-feedback { color:var(--muted); line-height:1.6; }

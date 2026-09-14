@@ -33,7 +33,7 @@ create table public.travel_activities (
 create index travel_activities_trip_date on public.travel_activities(trip_id, activity_date, activity_time);
 create table public.travel_sections (
  trip_id text not null references public.travel_trips(id),
- section text not null check(section in ('participants','accommodations','pws')),
+ section text not null check(section in ('participants','accommodations','pws','flights')),
  data jsonb not null,
  primary key (trip_id,section)
 );
@@ -64,6 +64,7 @@ create policy editors_insert_activities on public.travel_activities for insert t
 create policy editors_update_activities on public.travel_activities for update to authenticated using (exists(select 1 from public.travel_editors)) with check (exists(select 1 from public.travel_editors));
 create policy editors_delete_activities on public.travel_activities for delete to authenticated using (exists(select 1 from public.travel_editors));
 insert into public.travel_trips values
+ ('guangzhou','Guangzhou','2026-10-29','2026-11-01','Booked',false),
  ('japan','Japan','2027-03-05','2027-03-14','Potential',true),
  ('yunnan','Yunnan','2027-05-14','2027-05-23','Planning',false);
 insert into public.travel_sections values

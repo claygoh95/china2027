@@ -1,10 +1,10 @@
-# Travel 2027
+# Travel Dashboard · 2026–2027
 
-A personal dashboard for Japan (tentative snowboarding, 5–14 March 2027) and Yunnan (14–23 May 2027).
+A personal dashboard for Guangzhou (29 October–1 November 2026; Singapore arrival 2 November), Japan (tentative snowboarding, 5–14 March 2027) and Yunnan (14–23 May 2027).
 
 ## Code and saved plans
 
-GitHub stores layout, appearance, and features. Supabase stores itinerary activities, participants, accommodations, and pre-wedding shoot plans. The first editable feature is the itinerary: add, edit, move to another trip day, and delete activities. Participants, accommodations, and PWS sections currently load from the database as read-only views; their editing forms are a future addition. Flights and snowboarding wishlists remain static placeholders.
+GitHub stores layout, appearance, and features. Supabase stores itinerary activities, participants, accommodations, and pre-wedding shoot plans. The first editable feature is the itinerary: add, edit, move to another trip day, and delete activities. Participants, accommodations, and PWS sections currently load from the database as read-only views; their editing forms are a future addition. Guangzhou flights load from the database. Japan/Yunnan flights and snowboarding wishlists remain static placeholders.
 
 Sign in using an approved email address. The email link returns to the same trip page; open it on the computer running your local server. The browser remembers your sign-in until you sign out. The database checks editor access for every request; signing up alone does not grant access. Saved planning sections are hidden while signed out. Trip names/dates and older committed participant details are still present in this public repository/history; this does not make previously public information private.
 
@@ -31,7 +31,7 @@ For a different hostname, port, path, or hosted deployment, first add its exact 
 ## Files
 
 - `dist/index.html`: all-trips overview.
-- `dist/japan.html`, `dist/yunnan.html`: dashboard layout.
+- `dist/guangzhou.html`, `dist/japan.html`, `dist/yunnan.html`: dashboard layout.
 - `dist/app.js`: day-tab navigation.
 - `dist/database.js`: sign-in, database loading, and itinerary forms.
 - `dist/travel-data.mjs`: input validation and database mutations.
@@ -52,13 +52,21 @@ The free built-in email sender is being used with its default sign-in-link templ
 ## Verification
 
 ```sh
-node --test tests/travel-data.test.mjs
+node --test tests/*.test.mjs
 ```
 
-Validation, optimistic concurrency, stable insert IDs, and error handling are covered by five tests. Live SQL verification confirmed authorized CRUD, date validation, stale-update rejection, and blocked public/unauthorized access, with all temporary rows rolled back. Browser UI flows were checked using isolated sample data. The first real email sign-in and browser-to-database save still need to be exercised by the account owner.
+Validation, optimistic concurrency, stable insert IDs, and error handling are covered by five tests. Two further tests check the four-day itinerary across a month boundary and preserve the existing ten-day trips. Live SQL verification confirmed authorized CRUD, date validation, stale-update rejection, and blocked public/unauthorized access, with all temporary rows rolled back. Browser UI flows were checked using isolated sample data. The first real email sign-in and browser-to-database save still need to be exercised by the account owner.
 
 ## Images
 
 Yunnan: Lugu Lake photograph by Aqu1248050, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), cropped for the banner. [Source](https://commons.wikimedia.org/wiki/File:Lugu_lake_China_Yunnan.jpg).
 
 Japan: AI-generated winter landscape.
+
+## Guangzhou 2026
+
+The overview and sidebars now span 2026–2027. Guangzhou has four itinerary dates (29 October–1 November); the return flight lands on 2 November. A separate pre-wedding shoot plan remains unscheduled. The Guangzhou banner is an original SVG skyline illustration.
+
+Flights, hotel details, prices, and the booking reference supplied by the owner are stored in Supabase, outside public source files. Four initial itinerary entries cover the flights and hotel check-in/check-out. The schema change to allow a `flights` section is recorded in `database/allow-flight-sections.sql` and is already applied. A new database initialized with `schema.sql` contains trip metadata; Guangzhou booking data must be entered privately by its administrator.
+
+Guangzhou email return URLs are configured at `http://localhost:4173/guangzhou.html` and `http://127.0.0.1:5500/china2027/dist/guangzhou.html`. Pull the code, open either local page, and sign in to see bookings. The Sites deployment is unchanged.

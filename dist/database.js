@@ -118,6 +118,16 @@ function editActivity(existing) {
   };
 }
 const sortActivities = (a,b) => a.activity_date.localeCompare(b.activity_date) || (a.activity_time || '99').localeCompare(b.activity_time || '99') || a.created_at.localeCompare(b.created_at);
+const bookingDate = value => value ? new Date(value + 'T00:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}) : 'To confirm';
+const money = (value,currency='SGD') => new Intl.NumberFormat('en-SG',{style:'currency',currency,currencyDisplay:'code'}).format(value);
+function bookingDetails(values) {
+  const list = node('dl',undefined,'booking-details');
+  for (const [label,value] of values) {
+    if (value === undefined || value === null || value === '') continue;
+    const row = node('div'); row.append(node('dt',label),node('dd',value)); list.append(row);
+  }
+  return list;
+}
 function renderSections(rows) {
   const map = Object.fromEntries(rows.map(row => [row.section, row.data]));
   for (const host of sectionHosts) {
@@ -133,11 +143,32 @@ function renderSections(rows) {
         group.append(list); groups.append(group);
       }
       host.append(groups);
+    } else if (section === 'flights') {
+      for (const leg of data.legs || []) {
+        const card = node('article',undefined,'flight-leg');
+        card.append(node('small',leg.label),node('h3',leg.from + ' → ' + leg.to,'flight-route'));
+        card.append(node('p',leg.airline + ' · ' + leg.flight_number));
+        card.append(node('p','Departs ' + bookingDate(leg.departure_date) + ' · ' + leg.departure_time));
+        card.append(node('p','Arrives ' + bookingDate(leg.arrival_date) + ' · ' + leg.arrival_time,leg.arrival_date !== leg.departure_date ? 'arrival-note' : ''));
+        if (leg.arrival_date !== leg.departure_date) card.append(node('small','Arrival is the following day.'));
+        host.append(card);
+      }
+      host.append(bookingDetails([
+        ['Passengers',data.passengers],
+        ['Flights total',data.total_price == null ? null : money(data.total_price,data.currency)],
+        ['Add-ons shown',data.add_ons?.join(' · ')]
+      ]),node('p','All flight times are local. Singapore and Guangzhou use UTC +08:00.','empty-caption'));
     } else if (section === 'accommodations') {
       if (!data.length) host.append(node('p', 'No accommodations saved yet.', 'empty-caption'));
       for (const stay of data) {
         const card = node('article', undefined, 'activity-card');
-        card.append(node('h3', stay.name || 'Accommodation'), node('p', stay.location || ''), node('p', [stay.check_in, stay.check_out].filter(Boolean).join(' → ')), node('p', stay.notes || ''));
+        card.append(node('h3', stay.name || 'Accommodation'), node('p', stay.location || ''));
+        card.append(bookingDetails([
+          ['Status',stay.status],['Check-in',bookingDate(stay.check_in)],['Check-out',bookingDate(stay.check_out)],
+          ['Nights',stay.nights],['Room',stay.room],['Guests',stay.guests],
+          ['Hotel total',stay.total_price == null ? null : money(stay.total_price,stay.currency)],
+          ['Booking reference',stay.booking_reference],['Booked on',stay.booked_on ? bookingDate(stay.booked_on) : null]
+        ]),node('p',stay.notes || ''));
         host.append(card);
       }
     } else if (section === 'pws') {
