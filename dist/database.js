@@ -171,6 +171,18 @@ function renderSections(rows) {
         ]),node('p',stay.notes || ''));
         host.append(card);
       }
+    } else if (section === 'tour_package') {
+      host.append(node('p',data.description),node('p',data.status,'empty-caption'));
+      host.append(node('h3','Quoted prices · CNY per person'));
+      for (const price of data.prices || []) {
+        host.append(bookingDetails([[price.label, money(price.original,'CNY') + ' − ' + money(price.discount,'CNY') + ' = ' + money(price.total,'CNY')]]));
+      }
+      for (const [heading,items] of [['Promotion',data.promotion],['Included in the quote',data.inclusions],['How to reserve',data.reservation],['Operator’s stated terms',data.terms],['Details to confirm',data.to_confirm]]) {
+        host.append(node('h3',heading));
+        const list=node('ul');
+        for (const item of items || []) list.append(node('li',item));
+        host.append(list);
+      }
     } else if (section === 'pws') {
       const grid = node('div', undefined, 'pws-grid');
       const arrangements = node('section'); arrangements.append(node('h3','Shoot arrangements'));

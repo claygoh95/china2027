@@ -33,7 +33,7 @@ create table public.travel_activities (
 create index travel_activities_trip_date on public.travel_activities(trip_id, activity_date, activity_time);
 create table public.travel_sections (
  trip_id text not null references public.travel_trips(id),
- section text not null check(section in ('participants','accommodations','pws','flights')),
+ section text not null check(section in ('participants','accommodations','pws','flights','tour_package')),
  data jsonb not null,
  primary key (trip_id,section)
 );
