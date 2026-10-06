@@ -157,7 +157,7 @@ function renderSections(rows) {
         ['Passengers',data.passengers],
         ['Flights total',data.total_price == null ? null : money(data.total_price,data.currency)],
         ['Add-ons shown',data.add_ons?.join(' · ')]
-      ]),node('p','All flight times are local. Singapore and Guangzhou use UTC +08:00.','empty-caption'));
+      ]),node('p','All flight times are local. Check airline details for airport guidance.','empty-caption'));
     } else if (section === 'accommodations') {
       if (!data.length) host.append(node('p', 'No accommodations saved yet.', 'empty-caption'));
       for (const stay of data) {
