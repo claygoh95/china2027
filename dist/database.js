@@ -160,6 +160,18 @@ function renderSections(rows) {
       ]),node('p','All flight times are local. Check airline details for airport guidance.','empty-caption'));
     } else if (section === 'accommodations') {
       if (!data.length) host.append(node('p', 'No accommodations saved yet.', 'empty-caption'));
+      if (data.length) {
+        const nights = data.reduce((sum, stay) => sum + (Number(stay.nights) || 0), 0);
+        const totals = data.reduce((sum, stay) => {
+          if (stay.total_price == null) return sum;
+          const currency = stay.currency || 'SGD';
+          sum[currency] = (sum[currency] || 0) + Number(stay.total_price);
+          return sum;
+        }, {});
+        host.append(node('p', `${data.length} stays · ${nights} nights`, 'empty-caption'));
+        const amounts = Object.entries(totals).map(([currency, amount]) => money(amount, currency)).join(' · ');
+        if (amounts) host.append(bookingDetails([['Combined listed total', amounts]]));
+      }
       for (const stay of data) {
         const card = node('article', undefined, 'activity-card');
         card.append(node('h3', stay.name || 'Accommodation'), node('p', stay.location || ''));
